@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Roam Local — Summer Day Planner",
+  title: "Roam Local — Find your next day outside",
   description:
-    "Plan your perfect summer day with local outdoor activities and dining picks, powered by AI.",
+    "Discover trails, parks, viewpoints, and local restaurants nearby — curated by AI.",
 };
 
 export default function RootLayout({

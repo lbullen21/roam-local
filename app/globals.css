@@ -1,12 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #fff8e7;
-  --foreground: #2a1a0a;
+  --background: #ffffff;
+  --foreground: #1c1917;
 }
 
 html,
@@ -18,30 +18,52 @@ body {
 
 body {
   font-family: theme("fontFamily.sans");
-  background-image: theme("backgroundImage.sky-gradient");
-  background-attachment: fixed;
 }
 
 .card {
-  @apply bg-white/80 backdrop-blur rounded-2xl shadow-warm border border-white/60;
+  @apply bg-white rounded-xl border border-stone-200 overflow-hidden transition-shadow;
+}
+
+.card-hover {
+  @apply hover:shadow-md hover:border-stone-300;
 }
 
 .btn {
-  @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed;
+  @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
 }
 
 .btn-primary {
-  @apply btn bg-coral-500 text-white hover:bg-coral-600 shadow-warm;
+  @apply btn bg-forest-500 text-white hover:bg-forest-600;
 }
 
 .btn-secondary {
-  @apply btn bg-white text-coral-600 border border-coral-200 hover:bg-coral-50;
+  @apply btn bg-white text-forest-600 border border-stone-300 hover:bg-sand-50;
 }
 
 .btn-ghost {
-  @apply btn bg-transparent text-stone-700 hover:bg-white/60;
+  @apply btn bg-transparent text-stone-700 hover:bg-stone-100;
 }
 
 .chip {
-  @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide;
+  @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-stone-100 text-stone-700;
+}
+
+.chip-active {
+  @apply bg-forest-500 text-white;
+}
+
+.heart-btn {
+  @apply inline-flex items-center justify-center h-9 w-9 rounded-full bg-white text-stone-700 shadow-sm border border-stone-200 hover:text-clay-500 transition-colors;
+}
+
+.heart-btn-active {
+  @apply text-clay-500;
+}
+
+.search-bar {
+  @apply w-full flex items-center gap-2 px-4 py-3 rounded-full border border-stone-300 bg-white focus-within:border-forest-500 focus-within:ring-2 focus-within:ring-forest-100 transition-colors;
+}
+
+.search-bar input {
+  @apply flex-1 bg-transparent outline-none text-stone-900 placeholder:text-stone-400;
 }

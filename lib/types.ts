@@ -1,4 +1,5 @@
 export type GroupType =
+  | "any"
   | "solo"
   | "couple"
   | "friends"
@@ -6,6 +7,7 @@ export type GroupType =
   | "dog-friendly";
 
 export type Vibe =
+  | "any"
   | "relaxed"
   | "adventurous"
   | "scenic"
@@ -13,7 +15,9 @@ export type Vibe =
   | "romantic"
   | "kid-friendly";
 
-export type ActivityCategory =
+export type SpotKind = "outdoor" | "dining";
+
+export type OutdoorSubcategory =
   | "hike"
   | "park"
   | "river"
@@ -21,23 +25,39 @@ export type ActivityCategory =
   | "viewpoint"
   | "outdoor";
 
-export interface Activity {
+export type Difficulty = "easy" | "moderate" | "hard";
+
+export type PriceRange = "$" | "$$" | "$$$" | "$$$$";
+
+export type MealKind = "brunch" | "lunch" | "dinner" | "anytime";
+
+interface SpotBase {
   id: string;
+  clientId: string;
+  kind: SpotKind;
   name: string;
-  category: ActivityCategory;
+  location: string;
   description: string;
+  tagline: string;
   driveTime: string;
-  difficulty?: "easy" | "moderate" | "hard" | null;
-  whyToday: string;
+  photoQuery: string;
+  photoUrl?: string;
+  photoAttribution?: { name: string; profileUrl: string };
 }
 
-export type DiningKind = "brunch" | "lunch" | "dinner";
+export interface OutdoorSpot extends SpotBase {
+  kind: "outdoor";
+  subcategory: OutdoorSubcategory;
+  difficulty?: Difficulty | null;
+  length?: string | null;
+  elevationGain?: string | null;
+}
 
-export interface DiningSpot {
-  id: string;
-  name: string;
+export interface DiningSpotV2 extends SpotBase {
+  kind: "dining";
   cuisine: string;
-  priceRange: "$" | "$$" | "$$$" | "$$$$";
-  kind: DiningKind;
-  reason: string;
+  priceRange: PriceRange;
+  mealKind: MealKind;
 }
+
+export type Spot = OutdoorSpot | DiningSpotV2;
